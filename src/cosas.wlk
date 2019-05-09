@@ -16,6 +16,7 @@ object paqueteDeLadrillos {
 	
 	method peso() { return 2 * cantidad }
 	method nivelPeligrosidad() { return 2 }
+	method bultos(){ return if(cantidad.between(1,100)){return 1} else if(cantidad.between(101,300)){return 2}else{return 3} }
 }
 
 object arenaAGranel {
