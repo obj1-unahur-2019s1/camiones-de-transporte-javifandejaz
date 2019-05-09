@@ -31,4 +31,22 @@ object camion {
 	method puedeCircularEnRuta(nivelMaximoPeligrosidad) {
 		return not cosas.all({i=>i.nivelPeligrosidad() > nivelMaximoPeligrosidad}) 
 	}
+	
+	method tieneAlgoQuePesaEntre(a, b) {
+		return cosas.any({i=>i.peso().between(a, b)}) 
+	}
+	
+	method cosaMasPesada() {
+		return cosas.max({i=>i.peso()})
+	}
+	
+	
+	//este no salee
+	method totalBultos() {
+		return cosas.size()
+	}
+	
+	method pesos() {
+		return cosas.map({i=>i.peso()})
+	}
 }

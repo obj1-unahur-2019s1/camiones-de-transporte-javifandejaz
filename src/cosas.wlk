@@ -14,7 +14,7 @@ object bumblebee {
 object paqueteDeLadrillos {
 	var property cantidad
 	
-	method peso() { return 2 }
+	method peso() { return 2 * cantidad }
 	method nivelPeligrosidad() { return 2 }
 }
 
@@ -26,9 +26,31 @@ object arenaAGranel {
 }
 
 object bateriaAntiaerea {
-	var tieneMisiles = true
+	var property tieneMisiles = true
 	
-	method cambiarMisiles(){tieneMisiles = false}
-	method peso() { if (tieneMisiles){return 300} else{return 200}}
-	method nivelPeligrosidad(){ if (tieneMisiles){return 100} else{return 0}}
+	method peso() { return if (tieneMisiles){ 300} else{ 200}}
+	method nivelPeligrosidad(){return if (tieneMisiles){ 100} else{ 0}}
 }
+
+object contenedorPortuario{
+	var contiene= []
+	
+	method contener(cosa){contiene.add(cosa) }
+	method peso(){return contiene.sum({i=>i.peso()}) + 100}
+	method nivelPeligrosidad(){return if (contiene.isEmpty()){0}else{contiene.max({i=>i.nivelPeligrosidad()}).nivelPeligrosidad()}}
+}
+
+object residuosRadioactivos{
+	var property peso
+	
+	method nivelPeligrosidad(){return 200}
+}
+
+object embalajeDeSeguridad{
+
+	method peso(algo){return algo.peso()}
+	method nivelPeligrosidad(algo){return algo.nivelPeligrosidad() / 2}
+}
+
+
+
